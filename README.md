@@ -1,3 +1,3 @@
 Tessa Putz
 She/Her/Hers
-Fire Ecology
+Fire Ecology - prescribed fire
