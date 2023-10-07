@@ -37,6 +37,7 @@ combined_logical <- c(num_logical, char_logical)
 ## how many true values?
 class(combined_logical) 
 
+# indexing
 animals <- c("mouse", "rat", "dog", "cat")
 animals[2]
 animals[2,3]
@@ -50,16 +51,52 @@ weight_g[c(T,F)]
 weight_g>50
 weight_g[weight_g>50]
 
+
+weight_g[weight_g<30 & weight_g>50]
 weight_g[weight_g<30 | weight_g>50]
 
-weight_g[weight_g>=30 & weight_g == 21]
-weight_g
+weight_g[weight_g>=30 & weight_g == 21] #!=
+weight_g[weight_g>=30 | weight_g == 21]
+weight_g[weight_g>30 & weight_g<55]
+
 
 #Can you figure out why "four" > "five" returns TRUE?
   
-  
-  
 
+#in class notes 
+  
+# Vectors!!!
+weight_g <- c(50,60,65,82)
+animals <- c("mouse", "rat", "dog")
+dog <- "Olive the border collie"
+empty_vector <- vector()
+length(animals)
+class(weight_g)
+class(animals)
+str(animals)
+
+weight_g <- c(weight_g, 90)
+weight_g <- c(30, weight_g)
+
+TRUE
+FALSE
+
+class(TRUE)
+TRUE-1
+F-1
+
+num_char <- c(1,2,3, "a")
+
+weight_g[2]
+weight_g[2,3]
+weight_g[c(2,3,2)]
+
+#remove dog
+animals[-3] 
+
+## student: how to just remove dog when you don't know the location
+animals[animals=="dog"]
+#how to add dog back in - not removed
 
 
 
