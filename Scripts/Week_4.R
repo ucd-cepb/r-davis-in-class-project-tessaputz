@@ -14,8 +14,18 @@ surveys %>%
   mutate(weight_kg = weight/1000,
          weight_kg2 = weight_kg*2)
 
+##### Group by & summarize
 
+group1 <- surveys %>% 
+  group_by(sex) %>% 
+  summarize(mean_weight = mean(weight,na.rm = T))
 
+group1 <- surveys %>% 
+  filter(!is.na(weight)) %>% 
+  group_by(sex,species_id) %>% 
+  summarize(mean_weight = mean(weight),
+            min_weight = min(weight))
 
-
-
+group2 <- surveys %>% 
+  group_by(sex,species_id) %>% 
+  summarize(mean_weight = mean(weight,na.rm=T))
