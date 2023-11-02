@@ -68,4 +68,17 @@ surveys_weight
 surveys_long <- surveys_long %>% 
   filter(!is.na(mean_weight))
 
+##### Exporting data -finished 11/2
+
+data("iris") #sample dataset
+dir.create("data_output")
+write_csv(surveys_wide,file = "data_output/iris.csv")
+
+
+
+
+
+
+
+
 
