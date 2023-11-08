@@ -72,7 +72,7 @@ surveys_long <- surveys_long %>%
 
 data("iris") #sample dataset
 dir.create("data_output")
-write_csv(surveys_wide,file = "data_output/iris.csv")
+write_csv(iris,file = "data_output/iris.csv")
 
 
 
