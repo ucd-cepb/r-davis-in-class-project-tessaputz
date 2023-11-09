@@ -6,6 +6,7 @@ library(tidyverse)
 # Using alt text
 install.packages("BrailleR")
 library(BrailleR)
+BrailleR::
 
 barplot <- ggplot(diamonds, aes(x = clarity)) + 
   geom_bar() +
@@ -14,7 +15,7 @@ barplot <- ggplot(diamonds, aes(x = clarity)) +
   theme_classic()
 
 VI(barplot)
-# what is bad about this?
+
 
 # ---- sonification: representing data by sound ----
 #ups and downs in frequency represent the ups and downs in the data
@@ -44,16 +45,19 @@ plot.diamonds <- ggplot(diamonds, aes(clarity, fill = cut)) +
   theme(axis.text.x = element_text(angle=70, vjust=0.5))
 
 plot.cars <- ggplot(mpg, aes(x = cty, y = hwy, color = factor(cyl))) + 
-  geom_point(size = 2.5)
-  #labs(x= "City", y= "Highway", color="Cylinder")
+  geom_point(size = 2.5)+
+  labs(x= "City Mileage", y= "Highway Mileage", 
+       color="Cylinder")
 
 plot.iris <- ggplot(data=iris, aes(x=Sepal.Length, y=Petal.Length, fill=Species)) +
   geom_point(size=3, alpha=0.7, shape=21)
 
 
 # plot_grid
-panel_plot <- plot_grid(plot.cars, plot.iris, plot.diamonds, 
-                        labels=c("A", "B", "C"), ncol=2, nrow = 2)
+panel_plot <- plot_grid(plot.cars, 
+                        plot.iris, 
+                        plot.diamonds, 
+      labels=c("A", "B", "C"), ncol=2, nrow = 2)
 panel_plot
 
 # fix the sizes with draw_plot to specify the dimensions
@@ -67,6 +71,7 @@ fixed_gridplot
 
 # ---- Saving figures ----
 #create new folder called "figures"
+dir.create("figures")
 ggsave("figures/gridplot.png", fixed_gridplot) #saves .png, .jpeg, .tiff, .pdf, .bmp, or .svg
 
 # scale to scale the image
