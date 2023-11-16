@@ -22,8 +22,7 @@ my_sum2(a=3)
 # temperature conversion example: Fahrenheit to Kelvin
 
 ((50- 32) * (5/ 9)) + 273.15
-((62- 32) * (5/ 9)) + 273.15
-((72- 32) * (5/ 9)) + 273.15
+
 
 #How to write a function:
 #1. Identify what piece(s) will change within your commands -- this is your argument
@@ -35,14 +34,14 @@ K <- ((tempF- 32) * (5/ 9)) + 273.15
 return(K)
 }
 
-F_to_K(72)
+F_to_K()
 
 #Pass-by-value: changes or objects within the function only exist within the function.
 
-# freezing point of water 32 F to??
-F_to_K(32)
-# boiling point of water 212 F to ??
-F_to_K(212)
+# freezing point of water: 32 F to??
+
+# boiling point of water: 212 F to ??
+
 
 
 # ---- using dataframes in functions ----
@@ -56,7 +55,7 @@ gapminder %>%
   filter(country == "Canada", year %in% c(1950:1970)) %>% 
   summarize(meanGDP = mean(gdpPercap, na.rm = T))
 
-# but what if you wanted to do this for different countries? Or years? 
+# but what if you wanted to do this for multiple different countries? Or years? 
 # turn it into a function! 
 
 avgGDP <- function(cntry,yr.range){
@@ -67,4 +66,37 @@ avgGDP <- function(cntry,yr.range){
   }
 avgGDP("Iran",1980:1985)
 
+## plotting example
+surveys <- read_csv("data/portal_data_joined.csv")
 
+surveys %>% 
+  filter(species_id == "PE" & !is.na(weight) & !is.na(hindfoot_length)) %>% 
+  ggplot(aes(x=weight, y=hindfoot_length))+
+  geom_point(alpha=.5)+
+  labs(x="Weight", y="Hindfoot length", title = "PE weight x hindfoot")
+  
+surveys %>% 
+  filter(species_id == "PL" & !is.na(weight) & !is.na(hindfoot_length)) %>% 
+  ggplot(aes(x=weight, y=hindfoot_length))+
+  geom_point(alpha=.5)+
+  labs(x="Weight", y="Hindfoot length", title = "PL weight x hindfoot")
+
+surveys %>% 
+  filter(species_id == "SH" & !is.na(weight) & !is.na(hindfoot_length)) %>% 
+  ggplot(aes(x=weight, y=hindfoot_length))+
+  geom_point(alpha=.5)+
+  labs(x="Weight", y="Hindfoot length", title = "SH weight x hindfoot")
+
+# instead of copying and pasting make a function!
+
+#----
+plot_fx <- function(SPECIES,PLOTTITLE) {
+  surveys %>% 
+  filter(species_id == SPECIES & !is.na(weight) & !is.na(hindfoot_length)) %>% 
+  ggplot(aes(x=weight, y=hindfoot_length))+
+  geom_point(alpha=.5)+
+  labs(x="Weight", y="Hindfoot length", title = PLOTTITLE)
+}
+
+plot_fx("SH", "SH weight x hindfoot")
+plot_fx("SH") #give a default title 
